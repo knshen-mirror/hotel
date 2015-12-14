@@ -92,7 +92,7 @@ public class DataCollector {
 		}
 	}
 	
-	private void getMainList(String path) throws IOException {
+	public void getMainList(String path) throws IOException {
 		cr = new CSVReader(path);
 		List<List<String>> data = cr.getData();
 		
