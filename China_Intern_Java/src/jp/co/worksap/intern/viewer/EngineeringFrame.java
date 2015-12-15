@@ -162,6 +162,21 @@ public class EngineeringFrame extends JFrame implements Runnable {
 		
 		scrollPane_1 = new JScrollPane();
 		
+		JButton btnNewButton = new JButton("manually dispatch");
+		btnNewButton.addActionListener(new ActionListener() {
+			// manually dispatch task
+			public void actionPerformed(ActionEvent e) {
+				try {
+					TaskDispatchFrame tdf = new TaskDispatchFrame();
+					tdf.setVisible(true);
+					tdf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					tdf.setTitle("Manually dispatch task");
+				} catch(IOException ioe) {
+					ioe.printStackTrace();
+				}
+			}
+		});
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -176,12 +191,12 @@ public class EngineeringFrame extends JFrame implements Runnable {
 							.addContainerGap())
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(lblMakeDispatchRule)
-							.addPreferredGap(ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+							.addComponent(btnNewButton)
+							.addGap(31)
 							.addComponent(btnMake)
 							.addGap(20))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblMaintainList)
-							.addContainerGap(318, Short.MAX_VALUE))))
+						.addComponent(lblMaintainList)))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -189,7 +204,8 @@ public class EngineeringFrame extends JFrame implements Runnable {
 					.addGap(20)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblMakeDispatchRule)
-						.addComponent(btnMake))
+						.addComponent(btnMake)
+						.addComponent(btnNewButton))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
 					.addGap(29)
