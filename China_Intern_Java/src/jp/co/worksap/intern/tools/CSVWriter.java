@@ -4,6 +4,11 @@ import java.io.*;
 import java.util.*;
 import jp.co.worksap.intern.dto.*;
 
+/**
+ * Some naive csv file random generator, may not general and totally automatic
+ * @author intern Kyle
+ *
+ */
 public class CSVWriter {
 	public static String filePath = "C:\\Users\\ShenKai\\Desktop\\China_Intern_Java\\files\\ROOM_STATUS.csv";
 	public static String file = "e://tmp.txt";
@@ -13,6 +18,12 @@ public class CSVWriter {
 		
 	}
 	
+	/**
+	 * Randomly generate miantain list
+	 * @param list
+	 * @param filePath
+	 * @throws IOException
+	 */
 	public void generateMaintainList(List<MaintainDTO> list, String filePath) throws IOException {
 		BufferedWriter bw = new BufferedWriter(new FileWriter(new File(filePath), false));
 		String head = "hotel_id,room_id,device,fix";
@@ -27,6 +38,10 @@ public class CSVWriter {
 		bw.close();
 	}
 	
+	/**
+	 * Randomly generate customer consumptions
+	 * @throws IOException
+	 */
 	public void generateConsumption() throws IOException {
 		BufferedWriter bw = new BufferedWriter(new FileWriter(new File(file), false));
 		int customer_id = 64;
@@ -45,6 +60,10 @@ public class CSVWriter {
 		bw.close();
 	}
 	
+	/**
+	 * Randomly generate room status list
+	 * @throws IOException
+	 */
 	public void generateRoomStatus() throws IOException {
 		BufferedWriter bw = new BufferedWriter(new FileWriter(new File(file), false));
 		for(int i = 1; i<=31; i++) {

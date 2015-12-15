@@ -7,23 +7,45 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+/**
+ * A tool to plot various figures
+ * @author intern Kyle
+ *
+ */
 public class Plot {
 
 	public Plot() {
 		
 	}
 	
-	public void plotLine() {
+	/**
+	 * to plot line figure
+	 * @param title
+	 * @param xName
+	 * @param yName
+	 * @param product
+	 * @param x_data
+	 * @param data
+	 */
+	public void plotLine(String title, String xName, String yName, List<String> product, List<String> x_data, List<List<Integer>> data) {
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();  
-		dataset.addValue(100, "test2", "1");  
-		dataset.addValue(150, "test2", "2");  
-		dataset.addValue(300, "test2", "3");  
-		dataset.addValue(100, "test2", "4");  
+		
+		for(int i=0; i<product.size(); i++) {
+			List<Integer> list = data.get(i);
+			for(int j=0; j<list.size(); j++) {
+				dataset.addValue(list.get(j), product.get(i), x_data.get(j));
+			}
+			
+		}
 		
 		JFreeChart chart = ChartFactory.createLineChart(  
-			       "line",                    // title  
-			       "-x-",                      // x 
-			       "-y-",                     // y
+			       title,                    // title  
+			       xName,                      // x 
+			       yName,                     // y
 			       dataset,                    // data 
 			       PlotOrientation.VERTICAL,   // 
 			       true,                       // legend  
@@ -31,38 +53,48 @@ public class Plot {
 			       false                       // url
 		);  
 		
-		ChartFrame chartFrame=new ChartFrame("line-title",chart); 
+		ChartFrame chartFrame=new ChartFrame(title,chart); 
         chartFrame.pack(); 
         chartFrame.setVisible(true);
 	}
 	
-	public void plotBar() {
+	/**
+	 * to plot bar figure
+	 * @param product
+	 * @param data
+	 * @param title
+	 * @param xName
+	 * @param yName
+	 */
+	public void plotBar(List<String> product, List<Double> data, String title, String xName, String yName) {
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 	
-	    dataset.addValue(100,"Spring　Security","Jan");  
-	    dataset.addValue(200,"jBPM　4","Jan");  
-	    dataset.addValue(300,"Ext　JS","Jan");  
-	    dataset.addValue(400,"JFreeChart","Jan");  
-	
-	    JFreeChart chart = ChartFactory.createBarChart("chart", "num", "type", dataset, PlotOrientation.VERTICAL, true, false, false);
+		for(int i=0; i<product.size(); i++) {
+			dataset.addValue(data.get(i),product.get(i),"");  
+		}
 	    
-	    ChartFrame chartFrame=new ChartFrame("title",chart); 
+	    JFreeChart chart = ChartFactory.createBarChart(title, xName, yName, dataset, PlotOrientation.VERTICAL, true, false, false);
+	    
+	    ChartFrame chartFrame=new ChartFrame(title, chart); 
         chartFrame.pack(); 
         chartFrame.setVisible(true);
 	}
 	
-	public void plotPie() {
-		DefaultPieDataset dpd=new DefaultPieDataset(); 
-        dpd.setValue("v1", 25);  
-        dpd.setValue("v2", 25);
-        dpd.setValue("v3", 45);
-        dpd.setValue("v4", 10);
-        
-        JFreeChart chart=ChartFactory.createPieChart("title",dpd,true,true,false); 
-        
-        
-        ChartFrame chartFrame=new ChartFrame("title",chart); 
-       
+	/**
+	 * to plot pie figure
+	 * @param product
+	 * @param data
+	 * @param title
+	 */
+	public void plotPie(List<String> product, List<Integer> data, String title) {
+		DefaultPieDataset dpd=new DefaultPieDataset();
+		for(int i=0; i<product.size(); i++) {
+			dpd.setValue(product.get(i), data.get(i));  
+		}
+      
+        JFreeChart chart=ChartFactory.createPieChart(title,dpd,true,true,false); 
+ 
+        ChartFrame chartFrame=new ChartFrame(title,chart);      
         chartFrame.pack(); 
         chartFrame.setVisible(true);
 	}
@@ -70,9 +102,11 @@ public class Plot {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Plot pd = new Plot();
-		//pd.plotPie();
-		//pd.plotBar();
-		pd.plotLine();
+		
+		//System.out.println("#: " + time);
+		//pd.plotPie(Arrays.asList("1", "2", "3"), Arrays.asList(100, 200, 300), "occupation");
+		//pd.plotBar("12234");
+		//pd.plotLine();
 	}
 
 }

@@ -4,6 +4,11 @@ import jp.co.worksap.intern.tools.DataCollector;
 import java.io.*;
 import java.util.*;
 
+/**
+ * To support login function 
+ * @author intern Kyle
+ *
+ */
 public class Login {
 	private DataCollector dc;
 	

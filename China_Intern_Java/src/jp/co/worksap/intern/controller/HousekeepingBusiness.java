@@ -7,6 +7,11 @@ import java.util.*;
 
 import java.io.*;
 
+/**
+ * This is business logic of Housekeeping Department 
+ * @author intern Kyle
+ *
+ */
 public class HousekeepingBusiness {
 	
 	private DataCollector dc;
@@ -36,6 +41,10 @@ public class HousekeepingBusiness {
 		writeBack();
 	}
 	
+	/**
+	 * update the newer maintain list to csv file
+	 * @throws IOException
+	 */
 	private void writeBack() throws IOException {
 		// re-write maintain list (not append)
 		new CSVWriter().generateMaintainList(dc.main_list, path);

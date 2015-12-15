@@ -3,6 +3,11 @@ package jp.co.worksap.intern.tools;
 import java.io.*;
 import java.util.*;
 
+/**
+ * A easy CSV file reader
+ * @author intern Kyle
+ *
+ */
 public class CSVReader {
 	private String path;
 	private BufferedReader br;
@@ -12,6 +17,11 @@ public class CSVReader {
 		br = new BufferedReader(new FileReader(new File(path)));
 	}
 	
+	/**
+	 * get all the data from a csv file
+	 * @return
+	 * @throws IOException
+	 */
 	public List<List<String>> getData() throws IOException {
 		List<List<String>> res = new ArrayList<List<String>>();
 		String line = br.readLine();

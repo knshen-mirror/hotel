@@ -1,5 +1,10 @@
 package jp.co.worksap.intern.tools;
 
+/**
+ * A tool to compare two dates
+ * @author intern Kyle
+ *
+ */
 public class DateComparator {
 	/**
 	 * compare two date String "yyyy/mm/dd" 

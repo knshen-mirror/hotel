@@ -8,6 +8,11 @@ import java.util.*;
 
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * To get the maintain list when the caller wants to know
+ * @author intern Kyle
+ *
+ */
 public class MaintainListChecker {
 	private DataCollector dc;
 	public List<MaintainDTO> todolist = new ArrayList<MaintainDTO>();
@@ -18,12 +23,20 @@ public class MaintainListChecker {
 		this.dc = dc;		
 	}
 	
+	/**
+	 * get all the to do maintain tasks
+	 * @throws IOException
+	 */
 	public void importToMaintain() throws IOException {
 		dc.main_list.clear();
 		dc.getMainList(path);
 		todolist = new ArrayList<MaintainDTO>(dc.main_list);
 	}
 	
+	/**
+	 * to get the number of to do maintain tasks
+	 * @return
+	 */
 	public int getToDoListSize() {
 		int todo = 0;
 		for(MaintainDTO dto : todolist) {

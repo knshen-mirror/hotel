@@ -4,6 +4,11 @@ import java.util.*;
 import jp.co.worksap.intern.dto.*;
 import java.io.*;
 
+/**
+ * To cache all the related data to memory
+ * @author intern Kyle
+ *
+ */
 public class DataCollector {
 	private CSVReader cr;
 	
@@ -32,6 +37,11 @@ public class DataCollector {
 		this.getStaffList(prefix + "STAFF_MST.csv");
 	}
 	
+	/**
+	 * get customer consumption list
+	 * @param path
+	 * @throws IOException
+	 */
 	private void getCon_list(String path) throws IOException {
 		cr = new CSVReader(path);
 		List<List<String>> data = cr.getData();
@@ -46,6 +56,11 @@ public class DataCollector {
 		}
 	}
 	
+	/**
+	 * get customer information
+	 * @param path
+	 * @throws IOException
+	 */
 	private void getCus_list(String path) throws IOException {
 		cr = new CSVReader(path);
 		List<List<String>> data = cr.getData();
@@ -60,6 +75,11 @@ public class DataCollector {
 		}
 	}
 	
+	/**
+	 * get hotel department information
+	 * @param path
+	 * @throws IOException
+	 */
 	private void getDept(String path) throws IOException {
 		cr = new CSVReader(path);
 		List<List<String>> data = cr.getData();
@@ -69,6 +89,11 @@ public class DataCollector {
 		}
 	}
 	
+	/**
+	 * get hotel device information
+	 * @param path
+	 * @throws IOException
+	 */
 	private void getDevice(String path) throws IOException {
 		cr = new CSVReader(path);
 		List<List<String>> data = cr.getData();
@@ -78,6 +103,11 @@ public class DataCollector {
 		}
 	}
 	
+	/**
+	 * get all the hotels' information
+	 * @param path
+	 * @throws IOException
+	 */
 	private void getHotel_list(String path) throws IOException {
 		cr = new CSVReader(path);
 		List<List<String>> data = cr.getData();
@@ -92,6 +122,11 @@ public class DataCollector {
 		}
 	}
 	
+	/**
+	 * get maintain tasks list
+	 * @param path
+	 * @throws IOException
+	 */
 	public void getMainList(String path) throws IOException {
 		cr = new CSVReader(path);
 		List<List<String>> data = cr.getData();
@@ -106,6 +141,11 @@ public class DataCollector {
 		}
 	}
 	
+	/**
+	 * get region information
+	 * @param path
+	 * @throws IOException
+	 */
 	private void getRegionList(String path) throws IOException {
 		cr = new CSVReader(path);
 		List<List<String>> data = cr.getData();
@@ -119,6 +159,11 @@ public class DataCollector {
 		}
 	}
 	
+	/**
+	 * get room information
+	 * @param path
+	 * @throws IOException
+	 */
 	private void getRoomList(String path) throws IOException {
 		cr = new CSVReader(path);
 		List<List<String>> data = cr.getData();
@@ -133,6 +178,11 @@ public class DataCollector {
 		}
 	}
 	
+	/**
+	 * get room status list
+	 * @param path
+	 * @throws IOException
+	 */
 	private void getRSList(String path) throws IOException {
 		cr = new CSVReader(path);
 		List<List<String>> data = cr.getData();
@@ -151,6 +201,11 @@ public class DataCollector {
 		}
 	}
 	
+	/**
+	 * get all the staff information
+	 * @param path
+	 * @throws IOException
+	 */
 	private void getStaffList(String path) throws IOException {
 		cr = new CSVReader(path);
 		List<List<String>> data = cr.getData();

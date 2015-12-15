@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.util.*;
 
 import jp.co.worksap.intern.controller.Login;
+import jp.co.worksap.intern.tools.DataCollector;
+import jp.co.worksap.intern.tools.Finder;
 
 public class LoginFrame extends JFrame {
 
@@ -70,6 +72,11 @@ public class LoginFrame extends JFrame {
 					List<Object> pos_info = li.getUserPos(textField.getText());
 					String pos = String.valueOf(pos_info.get(0));
 					int dept_id = Integer.valueOf(String.valueOf(pos_info.get(1)));
+					String dept_name = new DataCollector().dept.get(dept_id);
+					
+					// get user name
+					Finder finder = new Finder(new DataCollector());
+					String staff_name = finder.staffID2Name(Integer.valueOf(textField.getText())); 
 					
 					if(pos.equals("regionManager")) {
 						System.out.println("region manager");
@@ -79,6 +86,7 @@ public class LoginFrame extends JFrame {
 					else if(pos.equals("manager") && dept_id == 3) {
 						System.out.println("Housekeeping manager");
 						HousekeepingFrame frame = new HousekeepingFrame();
+						frame.setTitle("welcome " + staff_name + "you are " + pos + " of " + dept_name);
 						frame.setVisible(true);
 						setVisible(false);
 					}
@@ -87,12 +95,20 @@ public class LoginFrame extends JFrame {
 						EngineeringFrame frame = new EngineeringFrame();
 						frame.setVisible(true);
 						setVisible(false);
+						frame.setTitle("welcome " + staff_name + "you are " + pos + " of " + dept_name);
+						Thread t = new Thread(frame);
+						t.start();
 					}		
 					else if(pos.equals("manager") && dept_id == 5)
 						System.out.println("Front Office manager");			
-					else if(pos.equals("manager") && dept_id == 6)
+					else if(pos.equals("manager") && dept_id == 6) {
 						System.out.println("Sales manager");
-					
+						SalesFrame frame = new SalesFrame();
+						frame.setVisible(true);
+						frame.setTitle("welcome " + staff_name + "you are " + pos + " of " + dept_name);
+						setVisible(false);
+					}
+							
 				} catch(IOException ioe) {
 					ioe.printStackTrace();
 				}

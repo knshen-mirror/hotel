@@ -7,6 +7,11 @@ import jp.co.worksap.intern.tools.CSVWriter;
 import jp.co.worksap.intern.tools.DataCollector;
 import java.util.*;
 
+/**
+ * The business logic of Engineering Department
+ * @author intern Kyle
+ *
+ */
 public class EngineeringBusiness {
 	private DataCollector dc;
 	private String path; // maintain list file path
@@ -18,6 +23,13 @@ public class EngineeringBusiness {
 		rule_list = new ArrayList<RuleDTO>();
 	}
 	
+	/**
+	 * called when finishing a maintain task
+	 * @param hotel_id
+	 * @param room_id
+	 * @param device_id
+	 * @throws IOException
+	 */
 	public void fixAMaintainTask(int hotel_id, int room_id, int device_id) throws IOException {
 		dc.main_list.clear();
 		dc.getMainList(path);
@@ -34,7 +46,7 @@ public class EngineeringBusiness {
 	}
 	
 	/**
-	 * add device maintain rule
+	 * add device maintain rule to rule list
 	 */
 	public void makeDispatchRule(RuleDTO rule) {
 		rule_list.add(rule);

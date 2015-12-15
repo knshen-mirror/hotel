@@ -2,6 +2,8 @@ package jp.co.worksap.intern.viewer;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.swing.JFrame;
@@ -11,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -23,6 +26,7 @@ import java.io.IOException;
 import jp.co.worksap.intern.controller.HousekeepingBusiness;
 import jp.co.worksap.intern.controller.Report;
 import jp.co.worksap.intern.tools.DataCollector;
+import jp.co.worksap.intern.tools.Plot;
 import jp.co.worksap.intern.writer.ResultWriterImpl;
 
 public class HousekeepingFrame extends JFrame {
@@ -99,6 +103,32 @@ public class HousekeepingFrame extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			// plot bar chart
 			public void actionPerformed(ActionEvent e) {
+				Plot plot = new Plot();
+				///
+				String year = String.valueOf(comboBox.getSelectedItem());
+				String month = String.valueOf(comboBox_1.getSelectedItem());
+				String day = String.valueOf(comboBox_2.getSelectedItem());
+				String date = year + "/" + month + "/" + day;
+			
+				try {
+					Report re = new Report(new DataCollector());
+					double single[] = re.reportRoomOccupy(1, date, 1);
+					double _double[] = re.reportRoomOccupy(1, date, 2);
+					double triple[] = re.reportRoomOccupy(1, date, 3);
+					
+					List<String> product = new ArrayList<String>();
+					List<Double> data = new ArrayList<Double>();
+					product.add("single room");
+					product.add("double room");
+					product.add("triple room");
+					
+					data.add(single[2]);
+					data.add(_double[2]);
+					data.add(triple[2]);
+					plot.plotBar(product, data, "room occupation", "room type", "occupation rate");
+				} catch (IOException ioe) {
+					ioe.printStackTrace();
+				}
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -149,8 +179,15 @@ public class HousekeepingFrame extends JFrame {
 					data3[3] = String.valueOf(triple[2]);
 					list.add(data3);
 					
+					// write current date
+					Date _date=new Date();
+					DateFormat format=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+					String time=format.format(_date); 
+					list.add(new String[]{"", "", "", ""});
+					list.add(new String[]{"", "", "", ""});
+					list.add(new String[]{"report made time: ", time});
 					rwi.writeResult(list);
-					
+				    JOptionPane.showMessageDialog(null, "report made successfully!");  
 				} catch (IOException ioe) {
 					ioe.printStackTrace();
 				}
