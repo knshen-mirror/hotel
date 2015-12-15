@@ -6,7 +6,9 @@ import jp.co.worksap.intern.dto.*;
 import java.io.IOException;
 import java.util.*;
 
-public class MaintainListChecker extends Thread {
+import javax.swing.table.DefaultTableModel;
+
+public class MaintainListChecker {
 	private DataCollector dc;
 	public List<MaintainDTO> todolist = new ArrayList<MaintainDTO>();
 	private String path; // path of maintain list CSV file
@@ -22,13 +24,22 @@ public class MaintainListChecker extends Thread {
 		todolist = new ArrayList<MaintainDTO>(dc.main_list);
 	}
 	
+	public int getToDoListSize() {
+		int todo = 0;
+		for(MaintainDTO dto : todolist) {
+			if(dto.getFix() == 0)
+				todo++;
+		}
+		return todo;
+	}
 	
+	/*
 	public void run() {
 		while(true) {
 			try {
 			this.importToMaintain();
-			System.out.println("to do list size: " + todolist.size());
-			Thread.sleep(3000);	           
+			//System.out.println("to do list size: " + this.getToDoListSize());
+			Thread.sleep(5000);	           
 	        } catch (InterruptedException e) {
 	            e.printStackTrace(); 
 	        } catch (IOException ioe) {
@@ -37,12 +48,14 @@ public class MaintainListChecker extends Thread {
 		}
 		
 	}
-	
+	*/
+
 	public static void main(String[] args) throws IOException, InterruptedException {
 		DataCollector dc = new DataCollector();
 		MaintainListChecker check = new MaintainListChecker(dc, "files/MAINTAIN.csv");
 		
-		check.start();
+		//check.start();
+		
 		//System.out.println();
 
 	}

@@ -1,7 +1,8 @@
 package jp.co.worksap.intern.tools;
 
 import java.io.*;
-
+import java.util.*;
+import jp.co.worksap.intern.dto.*;
 
 public class CSVWriter {
 	public static String filePath = "C:\\Users\\ShenKai\\Desktop\\China_Intern_Java\\files\\ROOM_STATUS.csv";
@@ -10,6 +11,20 @@ public class CSVWriter {
 	
 	public CSVWriter() {
 		
+	}
+	
+	public void generateMaintainList(List<MaintainDTO> list, String filePath) throws IOException {
+		BufferedWriter bw = new BufferedWriter(new FileWriter(new File(filePath), false));
+		String head = "hotel_id,room_id,device,fix";
+		bw.write(head + "\n");
+		
+		for(MaintainDTO dto : list) {
+			String line = dto.getHotel_id() + "," + dto.getRoom_id() + "," + dto.getDevice() + "," + dto.getFix();
+			bw.write(line + "\n");
+			bw.flush();
+		}
+		
+		bw.close();
 	}
 	
 	public void generateConsumption() throws IOException {
